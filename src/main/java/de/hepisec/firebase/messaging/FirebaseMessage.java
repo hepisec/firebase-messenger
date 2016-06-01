@@ -38,7 +38,7 @@ public class FirebaseMessage {
         fields.put("to", to);
     }
 
-    public Object getRegistration_ids() {
+    public Object getRegistrationIds() {
         return fields.get("registration_ids");
     }
 
@@ -48,10 +48,10 @@ public class FirebaseMessage {
      * 
      * Use this parameter only for multicast messaging, not for single recipients. 
      * Multicast messages (sending to more than 1 registration tokens) are allowed using HTTP JSON format only.
-     * @param registration_ids
+     * @param registrationIds
      */
-    public final void setRegistration_ids(String[] registration_ids) {
-        fields.put("registration_ids", registration_ids);
+    public final void setRegistrationIds(String[] registrationIds) {
+        fields.put("registration_ids", registrationIds);
     }
 
     public Object getCondition() {
@@ -71,7 +71,7 @@ public class FirebaseMessage {
         fields.put("condition", condition);
     }
 
-    public Object getCollapse_key() {
+    public Object getCollapseKey() {
         return fields.get("collapse_key");
     }
 
@@ -89,10 +89,10 @@ public class FirebaseMessage {
      * This means a FCM connection server can simultaneously store 4 different 
      * send-to-sync messages per client app. If you exceed this number, there is no 
      * guarantee which 4 collapse keys the FCM connection server will keep.
-     * @param collapse_key
+     * @param collapseKey
      */    
-    public final void setCollapse_key(String collapse_key) {
-        fields.put("collapse_key", collapse_key);
+    public final void setCollapseKey(String collapseKey) {
+        fields.put("collapse_key", collapseKey);
     }
 
     public Object getPriority() {
@@ -118,7 +118,7 @@ public class FirebaseMessage {
         fields.put("priority", priority);
     }
 
-    public Object getContent_available() {
+    public Object getContentAvailable() {
         return fields.get("content_available");
     }
 
@@ -128,13 +128,13 @@ public class FirebaseMessage {
      * When a notification or message is sent and this is set to true, an inactive 
      * client app is awoken. On Android, data messages wake the app by default. 
      * On Chrome, currently not supported.
-     * @param content_available
+     * @param contentAvailable
      */    
-    public final void setContent_available(boolean content_available) {
-        fields.put("content_available", content_available);
+    public final void setContentAvailable(boolean contentAvailable) {
+        fields.put("content_available", contentAvailable);
     }
 
-    public Object getDelay_while_idle() {
+    public Object getDelayWhileIdle() {
         return fields.get("delay_while_idle");
     }
 
@@ -144,13 +144,13 @@ public class FirebaseMessage {
      * until the device becomes active.
      * 
      * The default value is false.
-     * @param delay_while_idle
+     * @param delayWhileIdle
      */    
-    public final void setDelay_while_idle(boolean delay_while_idle) {
-        fields.put("delay_while_idle", delay_while_idle);
+    public final void setDelayWhileIdle(boolean delayWhileIdle) {
+        fields.put("delay_while_idle", delayWhileIdle);
     }
 
-    public Object getTime_to_live() {
+    public Object getTimeToLive() {
         return fields.get("time_to_live");
     }
 
@@ -159,19 +159,19 @@ public class FirebaseMessage {
      * This parameter specifies how long (in seconds) the message should be kept in FCM 
      * storage if the device is offline. The maximum time to live supported is 4 weeks, 
      * and the default value is 4 weeks. For more information, see Setting the lifespan of a message.
-     * @param time_to_live
+     * @param timeToLive
      */    
-    public final void setTime_to_live(int time_to_live) {
-        if (time_to_live < 0) {
-            time_to_live = 0;
-        } else if (time_to_live > MAX_TTL) {
-            time_to_live = MAX_TTL;
+    public final void setTimeToLive(int timeToLive) {
+        if (timeToLive < 0) {
+            timeToLive = 0;
+        } else if (timeToLive > MAX_TTL) {
+            timeToLive = MAX_TTL;
         }
         
-        fields.put("time_to_live", time_to_live);
+        fields.put("time_to_live", timeToLive);
     }
 
-    public Object getRestricted_package_name() {
+    public Object getRestrictedPackageName() {
         return fields.get("restricted_package_name");
     }
 
@@ -179,13 +179,13 @@ public class FirebaseMessage {
      * (Optional)
      * This parameter specifies the package name of the application where the registration 
      * tokens must match in order to receive the message.
-     * @param restricted_package_name
+     * @param restrictedPackageName
      */    
-    public final void setRestricted_package_name(String restricted_package_name) {
-        fields.put("restricted_package_name", restricted_package_name);
+    public final void setRestrictedPackageName(String restrictedPackageName) {
+        fields.put("restricted_package_name", restrictedPackageName);
     }
 
-    public Object isDry_run() {
+    public Object getDryRun() {
         return fields.get("dry_run");
     }
 
@@ -194,10 +194,10 @@ public class FirebaseMessage {
      * This parameter, when set to true, allows developers to test a request without actually sending a message.
      * 
      * The default value is false.
-     * @param dry_run
+     * @param dryRun
      */    
-    public final void setDry_run(boolean dry_run) {
-        fields.put("dry_run", dry_run);
+    public final void setDryRun(boolean dryRun) {
+        fields.put("dry_run", dryRun);
     }
 
     public Object getData() {

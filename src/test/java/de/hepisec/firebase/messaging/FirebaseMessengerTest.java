@@ -30,17 +30,17 @@ public class FirebaseMessengerTest {
         notification.setTitle_loc_key("title_loc_key");
         
         FirebaseMessage msg = new FirebaseMessage();
-        msg.setCollapse_key("collapse_key");
+        msg.setCollapseKey("collapse_key");
         msg.setCondition("condition");
-        msg.setContent_available(true);
+        msg.setContentAvailable(true);
         msg.setData("moep");
-        msg.setDelay_while_idle(true);
-        msg.setDry_run(true);
+        msg.setDelayWhileIdle(true);
+        msg.setDryRun(true);
         msg.setNotification(notification);
         msg.setPriority(FirebaseMessage.PRIORITY_HIGH);
-        msg.setRegistration_ids(new String[] {"reg1", "reg2"});
-        msg.setRestricted_package_name("restricted_package_name");
-        msg.setTime_to_live(86400);
+        msg.setRegistrationIds(new String[] {"reg1", "reg2"});
+        msg.setRestrictedPackageName("restricted_package_name");
+        msg.setTimeToLive(86400);
         msg.setTo("to");
         
         FirebaseMessenger fbm = new FirebaseMessenger();
