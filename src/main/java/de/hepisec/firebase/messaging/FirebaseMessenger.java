@@ -37,6 +37,8 @@ public class FirebaseMessenger {
      */
     public void subscribeToTopic(String idToken, String topic) throws IOException {
         Request.Post("https://iid.googleapis.com/iid/v1/" + idToken + "/rel/topics/" + topic)
+        .connectTimeout(35000)
+        .socketTimeout(35000)
         .addHeader("Authorization", "key=" + authorizationKey)
         .bodyString("", ContentType.create("application/json"))
         .execute();        
