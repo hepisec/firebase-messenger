@@ -28,6 +28,20 @@ public class FirebaseMessenger {
         .execute();
     }
     
+    /**
+     * See: https://developers.google.com/instance-id/reference/server#create_a_relation_mapping_for_an_app_instance
+     * 
+     * @param idToken
+     * @param topic
+     * @throws IOException 
+     */
+    public void subscribeToTopic(String idToken, String topic) throws IOException {
+        Request.Post("https://iid.googleapis.com/iid/v1/" + idToken + "/rel/topics/" + topic)
+        .addHeader("Authorization", "key=" + authorizationKey)
+        .bodyString("", ContentType.create("application/json"))
+        .execute();        
+    }
+    
     public String toJSON(FirebaseMessage msg) throws IOException {
         ObjectMapper om = new ObjectMapper();
         om.configure(SerializationFeature.WRITE_EMPTY_JSON_ARRAYS, false);
