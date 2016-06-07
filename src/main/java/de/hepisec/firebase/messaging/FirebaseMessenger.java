@@ -3,6 +3,8 @@ package de.hepisec.firebase.messaging;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.IOException;
+import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.entity.ContentType;
 
@@ -22,10 +24,14 @@ public class FirebaseMessenger {
     }
 
     public void sendMessage(FirebaseMessage msg) throws IOException {
-        Request.Post("https://fcm.googleapis.com/fcm/send")
+        HttpResponse response = Request.Post("https://fcm.googleapis.com/fcm/send")
         .addHeader("Authorization", "key=" + authorizationKey)
         .bodyString(toJSON(msg), ContentType.create("application/json"))
-        .execute();
+        .execute().returnResponse();
+        
+        if (response.getStatusLine().getStatusCode() != 200) {
+            throw new IOException(IOUtils.toString(response.getEntity().getContent(), "UTF-8"));
+        }
     }
     
     /**
@@ -36,12 +42,16 @@ public class FirebaseMessenger {
      * @throws IOException 
      */
     public void subscribeToTopic(String idToken, String topic) throws IOException {
-        Request.Post("https://iid.googleapis.com/iid/v1/" + idToken + "/rel/topics/" + topic)
+        HttpResponse response = Request.Post("https://iid.googleapis.com/iid/v1/" + idToken + "/rel/topics/" + topic)
         .connectTimeout(35000)
         .socketTimeout(35000)
         .addHeader("Authorization", "key=" + authorizationKey)
         .bodyString("", ContentType.create("application/json"))
-        .execute();        
+        .execute().returnResponse();        
+        
+        if (response.getStatusLine().getStatusCode() != 200) {
+            throw new IOException(IOUtils.toString(response.getEntity().getContent(), "UTF-8"));
+        }        
     }
     
     public String toJSON(FirebaseMessage msg) throws IOException {
