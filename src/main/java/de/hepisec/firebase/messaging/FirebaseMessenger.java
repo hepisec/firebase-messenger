@@ -1,5 +1,6 @@
 package de.hepisec.firebase.messaging;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.IOException;
@@ -58,6 +59,8 @@ public class FirebaseMessenger {
         ObjectMapper om = new ObjectMapper();
         om.configure(SerializationFeature.WRITE_EMPTY_JSON_ARRAYS, false);
         om.configure(SerializationFeature.WRITE_NULL_MAP_VALUES, false);       
+        om.configure(SerializationFeature.WRITE_ENUMS_USING_INDEX, true);
+        om.setSerializationInclusion(Include.NON_NULL);
         return om.writeValueAsString(msg.getFields());
     }
     
